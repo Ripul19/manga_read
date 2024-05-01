@@ -11,10 +11,12 @@ export default function Search() {
         const title = event.target.elements.q.value;
 
         const MANGADEX_BASE_URL = process.env.REACT_APP_MANGADEX_BASE_URL;
+        const CORS_PROXY= process.env.REACT_APP_CORS_PROXY;
+        const url = `${CORS_PROXY}${MANGADEX_BASE_URL}/manga`;
+
 
         try{
                 
-            const url = `${MANGADEX_BASE_URL}/manga`;
             const response = await axios({
                 method: 'GET',
                 url: url,
@@ -22,6 +24,9 @@ export default function Search() {
                     title: title,
                     limit: 1,
                     offset: 0
+                },
+                headers: {
+                    'Origin': `${process.env.REACT_APP_NGROK_ADDRESS}`
                 }
             });
 
