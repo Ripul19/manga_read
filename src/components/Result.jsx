@@ -14,8 +14,7 @@ export default function Result() {
         const SearchResult = async () => {
             const decodeTitleId = decodeURIComponent(titleId);
             const MANGADEX_BASE_URL = process.env.REACT_APP_MANGADEX_BASE_URL;
-            const CORS_PROXY= process.env.REACT_APP_CORS_PROXY;
-            const url = `${CORS_PROXY}${MANGADEX_BASE_URL}/manga/${decodeTitleId}/aggregate`;
+            const url = `${MANGADEX_BASE_URL}/manga/${decodeTitleId}/aggregate`;
             
             try {
                 const response = await axios({
@@ -28,7 +27,7 @@ export default function Result() {
                 
                 const coverImageResponse = await axios({
                     method: 'GET',
-                    url: `${CORS_PROXY}${MANGADEX_BASE_URL}/cover/${coverArtId}`
+                    url: `${MANGADEX_BASE_URL}/cover/${coverArtId}`
                 });
 
                 const coverImage = coverImageResponse.data.data.attributes.fileName;

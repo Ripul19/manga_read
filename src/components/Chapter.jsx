@@ -10,8 +10,7 @@ export default function Chapter() {
         const ChapterResult = async () => {
             const decodeChapterId = decodeURIComponent(chapterId);
             const MANGADEX_BASE_URL = process.env.REACT_APP_MANGADEX_BASE_URL;
-            const CORS_PROXY= process.env.REACT_APP_CORS_PROXY;
-            const url = `${CORS_PROXY}${MANGADEX_BASE_URL}/at-home/server/${decodeChapterId}`;
+            const url = `${MANGADEX_BASE_URL}/at-home/server/${decodeChapterId}`;
 
             try{
                 const response = await axios({
