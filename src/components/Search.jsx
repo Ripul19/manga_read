@@ -20,17 +20,24 @@ export default function Search() {
                 url: url,
                 params: {
                     title: title,
-                    limit: 1,
+                    limit: 20,
                     offset: 0
                 }
             });
 
-            const id = response.data.data[0].id;
-            const responseTitle = response.data.data[0].attributes.title.en;
+            navigate(`/searchResult/${encodeURIComponent(title)}`, { state: { mangaList: response.data.data }});
 
-            const cover_art= response.data.data[0].relationships.filter(art => art.type === 'cover_art')[0].id;
 
-            navigate(`/result/${encodeURIComponent(responseTitle)}/${encodeURIComponent(id)}`, { state: { art: cover_art }});
+
+            //ids obj with 20 limit
+            // const ids = response.data.data.map(obj=> obj.id);
+
+            //response title and cover art
+            // const responseTitle = response.data.data[0].attributes.title.en;
+
+            // const cover_art= response.data.data[0].relationships.filter(art => art.type === 'cover_art')[0].id;
+
+            // navigate(`/result/${encodeURIComponent(responseTitle)}/${encodeURIComponent(id)}`, { state: { art: cover_art }});
         }
         catch (error) {
             console.error("Error fetching manga: ", error);
